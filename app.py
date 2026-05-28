@@ -1,214 +1,17 @@
 import streamlit as st
 
-# =========================
+# =========================================================
 # PAGE CONFIG
-# =========================
+# =========================================================
 st.set_page_config(
     page_title="أصول VIP",
-    page_icon="💎",
+    page_icon="💚",
     layout="centered",
 )
 
-# =========================
-# GLOBAL CSS
-# =========================
-st.markdown("""
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap');
-
-html, body, [class*="css"] {
-    font-family: 'Tajawal', sans-serif !important;
-}
-
-#MainMenu {visibility: hidden;}
-footer {visibility: hidden;}
-header {visibility: hidden;}
-
-.stApp {
-    background: #0F172A;
-    color: white;
-}
-
-.block-container {
-    padding-top: 1rem;
-    padding-bottom: 2rem;
-    max-width: 450px;
-}
-
-/* ===== TITLE ===== */
-.vip-title {
-    text-align: center;
-    font-size: 34px;
-    font-weight: 800;
-    color: #D4AF37;
-    margin-bottom: 0;
-}
-
-.vip-subtitle {
-    text-align: center;
-    color: #CBD5E1;
-    margin-top: 5px;
-    margin-bottom: 25px;
-    font-size: 14px;
-}
-
-/* ===== METRIC CARDS ===== */
-.metric-card {
-    background: linear-gradient(145deg, #111827, #1E293B);
-    padding: 18px;
-    border-radius: 18px;
-    border-top: 4px solid #D4AF37;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.35);
-    transition: all 0.35s ease;
-    margin-bottom: 16px;
-}
-
-.metric-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 18px 35px rgba(0,0,0,0.55);
-}
-
-.metric-title {
-    color: #CBD5E1;
-    font-size: 14px;
-    margin-bottom: 10px;
-}
-
-.metric-value {
-    font-size: 28px;
-    font-weight: 800;
-    color: white;
-}
-
-.green-price {
-    color: #10B981;
-}
-
-/* ===== WALLET CARD ===== */
-.wallet-card {
-    background: linear-gradient(135deg, #050816, #111827, #1E293B);
-    border-radius: 24px;
-    padding: 24px;
-    margin-top: 20px;
-    margin-bottom: 25px;
-    position: relative;
-    overflow: hidden;
-    border: 1px solid rgba(212,175,55,0.25);
-    box-shadow: 0 12px 35px rgba(0,0,0,0.5);
-}
-
-.wallet-card::before {
-    content: "";
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    background: rgba(212,175,55,0.08);
-    border-radius: 50%;
-    top: -80px;
-    right: -50px;
-}
-
-.wallet-chip {
-    width: 50px;
-    height: 38px;
-    border-radius: 10px;
-    background: linear-gradient(145deg, #D4AF37, #AA8C2C);
-    margin-bottom: 22px;
-}
-
-.wallet-title {
-    color: #D4AF37;
-    font-size: 14px;
-    font-weight: 600;
-}
-
-.wallet-balance {
-    font-size: 32px;
-    font-weight: 800;
-    margin-top: 10px;
-}
-
-.wallet-usd {
-    color: #CBD5E1;
-    margin-top: 8px;
-    font-size: 15px;
-}
-
-/* ===== TABS ===== */
-.stTabs [data-baseweb="tab-list"] {
-    gap: 12px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-
-.stTabs [data-baseweb="tab"] {
-    color: #CBD5E1;
-    background-color: transparent;
-    padding: 10px 18px;
-    font-weight: 700;
-}
-
-.stTabs [aria-selected="true"] {
-    color: #D4AF37 !important;
-    border-bottom: 3px solid #D4AF37 !important;
-}
-
-/* ===== INPUTS ===== */
-.stNumberInput input {
-    background-color: #111827 !important;
-    color: white !important;
-    border-radius: 12px !important;
-    border: 1px solid rgba(255,255,255,0.08) !important;
-}
-
-/* ===== BUTTONS ===== */
-.stButton > button {
-    width: 100%;
-    border: none;
-    border-radius: 14px;
-    background: linear-gradient(135deg, #D4AF37, #AA8C2C);
-    color: white;
-    font-weight: 800;
-    padding: 14px;
-    transition: all 0.25s ease;
-    font-size: 16px;
-    letter-spacing: 0.5px;
-}
-
-.stButton > button:hover {
-    transform: scale(1.03);
-    box-shadow: 0 10px 25px rgba(212,175,55,0.35);
-}
-
-/* ===== INFO BOX ===== */
-.info-box {
-    background: #111827;
-    padding: 16px;
-    border-radius: 16px;
-    margin-top: 18px;
-    border-left: 4px solid #D4AF37;
-    color: #E2E8F0;
-}
-
-/* ===== MOBILE OPTIMIZATION ===== */
-@media (max-width: 480px) {
-    .wallet-balance {
-        font-size: 26px;
-    }
-
-    .metric-value {
-        font-size: 24px;
-    }
-
-    .vip-title {
-        font-size: 28px;
-    }
-}
-</style>
-""", unsafe_allow_html=True)
-
-# =========================
+# =========================================================
 # SESSION STATE
-# =========================
+# =========================================================
 INITIAL_CASH_POOL = 1000.0
 TOTAL_TOKENS = 10000
 
@@ -216,14 +19,14 @@ if "cash_pool" not in st.session_state:
     st.session_state.cash_pool = INITIAL_CASH_POOL
 
 if "tokens_sold" not in st.session_state:
-    st.session_state.tokens_sold = 0.0
+    st.session_state.tokens_sold = 1250.0
 
 if "user_tokens" not in st.session_state:
-    st.session_state.user_tokens = 0.0
+    st.session_state.user_tokens = 125.50
 
-# =========================
-# PRICE FUNCTION
-# =========================
+# =========================================================
+# AMM PRICE
+# =========================================================
 available_tokens = TOTAL_TOKENS - st.session_state.tokens_sold
 
 if available_tokens <= 0:
@@ -231,90 +34,442 @@ if available_tokens <= 0:
 
 current_price = st.session_state.cash_pool / available_tokens
 
-# =========================
-# HEADER
-# =========================
-st.markdown('<div class="vip-title">💎 أصول VIP</div>', unsafe_allow_html=True)
-st.markdown(
-    '<div class="vip-subtitle">منصة تداول واستثمار رقمية فاخرة للأصول الذكية</div>',
-    unsafe_allow_html=True
-)
-
-# =========================
-# METRIC CARDS
-# =========================
-st.markdown(f"""
-<div class="metric-card">
-    <div class="metric-title">سعر التوكن الحالي</div>
-    <div class="metric-value green-price">${current_price:.4f}</div>
-</div>
-""", unsafe_allow_html=True)
-
-st.markdown(f"""
-<div class="metric-card">
-    <div class="metric-title">سيولة المجمع النقدي</div>
-    <div class="metric-value">${st.session_state.cash_pool:,.2f}</div>
-</div>
-""", unsafe_allow_html=True)
-
-st.markdown(f"""
-<div class="metric-card">
-    <div class="metric-title">التوكنات المتوفرة</div>
-    <div class="metric-value">{available_tokens:,.0f}</div>
-</div>
-""", unsafe_allow_html=True)
-
-# =========================
-# WALLET CARD
-# =========================
 wallet_value = st.session_state.user_tokens * current_price
 
-st.markdown(f"""
-<div class="wallet-card">
-    <div class="wallet-chip"></div>
+# =========================================================
+# CSS
+# =========================================================
+st.markdown("""
+<style>
 
-    <div class="wallet-title">
-        محفظة المستثمر VIP
-    </div>
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap');
 
-    <div class="wallet-balance">
-        {st.session_state.user_tokens:,.2f} TOKEN
-    </div>
+html, body, [class*="css"] {
+    font-family: 'Tajawal', sans-serif !important;
+}
 
-    <div class="wallet-usd">
-        القيمة الحالية: ${wallet_value:,.2f}
-    </div>
+#MainMenu {
+    visibility: hidden;
+}
+
+header {
+    visibility: hidden;
+}
+
+footer {
+    visibility: hidden;
+}
+
+.stApp {
+    background:
+    radial-gradient(circle at top right, rgba(16,185,129,0.15), transparent 25%),
+    radial-gradient(circle at bottom left, rgba(16,185,129,0.08), transparent 25%),
+    #020617;
+
+    color: white;
+}
+
+.block-container {
+    max-width: 430px;
+    padding-top: 1rem;
+    padding-bottom: 3rem;
+}
+
+/* =========================================================
+TITLE
+========================================================= */
+
+.vip-title {
+    text-align: center;
+    font-size: 34px;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 0;
+}
+
+.vip-sub {
+    text-align: center;
+    color: #94A3B8;
+    margin-top: 5px;
+    margin-bottom: 25px;
+    font-size: 14px;
+}
+
+/* =========================================================
+METRIC CARDS
+========================================================= */
+
+.metric-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.metric-card {
+    background: linear-gradient(145deg,#07111f,#0b1727);
+    border: 1px solid rgba(16,185,129,0.18);
+    border-radius: 18px;
+    padding: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.35);
+    transition: 0.3s ease;
+}
+
+.metric-card:hover {
+    transform: translateY(-4px);
+    border-color: #10B981;
+}
+
+.metric-title {
+    color: #94A3B8;
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+
+.metric-value {
+    color: white;
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.metric-green {
+    color: #10B981;
+}
+
+/* =========================================================
+WALLET
+========================================================= */
+
+.wallet-card {
+    position: relative;
+    overflow: hidden;
+
+    background:
+    linear-gradient(135deg,#04110d,#071d16,#0b1727);
+
+    border-radius: 26px;
+    padding: 24px;
+    margin-top: 18px;
+    margin-bottom: 22px;
+
+    border: 1px solid rgba(16,185,129,0.3);
+
+    box-shadow:
+    0 15px 40px rgba(0,0,0,0.45),
+    0 0 30px rgba(16,185,129,0.08);
+}
+
+.wallet-card::before {
+    content: "";
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+
+    background: radial-gradient(circle, rgba(16,185,129,0.18), transparent 70%);
+
+    top: -100px;
+    right: -70px;
+}
+
+.wallet-title {
+    color: #FACC15;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.wallet-balance {
+    margin-top: 14px;
+    font-size: 34px;
+    font-weight: 800;
+}
+
+.wallet-value {
+    color: #CBD5E1;
+    margin-top: 10px;
+}
+
+/* =========================================================
+TABS
+========================================================= */
+
+.stTabs [data-baseweb="tab-list"] {
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.stTabs [data-baseweb="tab"] {
+    background: #07111f;
+    border-radius: 14px;
+    height: 52px;
+    color: white;
+    font-weight: 700;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.stTabs [aria-selected="true"] {
+    background: linear-gradient(135deg,#16A34A,#10B981);
+    color: white !important;
+}
+
+/* =========================================================
+INPUTS
+========================================================= */
+
+.stNumberInput > div {
+    background: transparent !important;
+}
+
+.stNumberInput input {
+    background: #07111f !important;
+    border: 1px solid rgba(16,185,129,0.25) !important;
+    color: white !important;
+    border-radius: 16px !important;
+    height: 58px !important;
+    font-size: 24px !important;
+    font-weight: 700 !important;
+}
+
+/* =========================================================
+BUTTONS
+========================================================= */
+
+.stButton button {
+    width: 100%;
+    height: 58px;
+
+    border: none;
+    border-radius: 18px;
+
+    background:
+    linear-gradient(135deg,#16A34A,#10B981);
+
+    color: white;
+    font-size: 20px;
+    font-weight: 800;
+
+    transition: 0.3s ease;
+
+    box-shadow:
+    0 12px 30px rgba(16,185,129,0.25);
+}
+
+.stButton button:hover {
+    transform: scale(1.02);
+}
+
+/* =========================================================
+BUY BOX
+========================================================= */
+
+.buy-box {
+    background:
+    linear-gradient(145deg,#07111f,#0b1727);
+
+    border-radius: 24px;
+    padding: 22px;
+
+    border: 1px solid rgba(16,185,129,0.15);
+
+    margin-top: 10px;
+}
+
+.buy-title {
+    text-align: center;
+    font-size: 34px;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.buy-sub {
+    text-align: center;
+    color: #94A3B8;
+    margin-bottom: 20px;
+}
+
+/* =========================================================
+INFO BOX
+========================================================= */
+
+.info-box {
+    background: rgba(16,185,129,0.08);
+
+    border: 1px solid rgba(16,185,129,0.25);
+
+    padding: 18px;
+
+    border-radius: 18px;
+
+    margin-top: 18px;
+
+    color: white;
+}
+
+.big-green {
+    color: #22C55E;
+    font-size: 22px;
+    font-weight: 800;
+}
+
+/* =========================================================
+FOOTER
+========================================================= */
+
+.footer-box {
+    margin-top: 20px;
+
+    background:
+    linear-gradient(145deg,#07111f,#0b1727);
+
+    border-radius: 20px;
+
+    padding: 16px;
+
+    border: 1px solid rgba(16,185,129,0.1);
+
+    color: #CBD5E1;
+}
+
+/* =========================================================
+MOBILE
+========================================================= */
+
+@media (max-width: 480px){
+
+    .metric-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .wallet-balance {
+        font-size: 28px;
+    }
+
+    .buy-title {
+        font-size: 28px;
+    }
+
+}
+
+</style>
+""", unsafe_allow_html=True)
+
+# =========================================================
+# HEADER
+# =========================================================
+st.markdown("""
+<div class="vip-title">
+💎 أصول VIP
+</div>
+
+<div class="vip-sub">
+منصة تداول واستثمار رقمية ذكية
 </div>
 """, unsafe_allow_html=True)
 
-# =========================
+# =========================================================
+# METRICS
+# =========================================================
+st.markdown(f"""
+<div class="metric-grid">
+
+<div class="metric-card">
+<div class="metric-title">
+سعر التوكن
+</div>
+
+<div class="metric-value metric-green">
+${current_price:.4f}
+</div>
+</div>
+
+<div class="metric-card">
+<div class="metric-title">
+سيولة المجمع
+</div>
+
+<div class="metric-value">
+${st.session_state.cash_pool:,.0f}
+</div>
+</div>
+
+<div class="metric-card">
+<div class="metric-title">
+المتوفر
+</div>
+
+<div class="metric-value">
+{available_tokens:,.0f}
+</div>
+</div>
+
+</div>
+""", unsafe_allow_html=True)
+
+# =========================================================
+# WALLET
+# =========================================================
+st.markdown(f"""
+<div class="wallet-card">
+
+<div class="wallet-title">
+👑 محفظة المستثمر VIP
+</div>
+
+<div class="wallet-balance">
+{st.session_state.user_tokens:,.2f} TOKEN
+</div>
+
+<div class="wallet-value">
+القيمة الحالية: ${wallet_value:,.2f}
+</div>
+
+</div>
+""", unsafe_allow_html=True)
+
+# =========================================================
 # TABS
-# =========================
+# =========================================================
 buy_tab, sell_tab = st.tabs(["شراء", "بيع"])
 
-# =========================
-# BUY TAB
-# =========================
+# =========================================================
+# BUY
+# =========================================================
 with buy_tab:
 
-    st.markdown("### 🚀 شراء الأصول")
+    st.markdown("""
+    <div class="buy-box">
+
+    <div class="buy-title">
+    🚀 شراء الأصول
+    </div>
+
+    <div class="buy-sub">
+    استثمر الآن وكن جزءاً من النمو
+    </div>
+
+    </div>
+    """, unsafe_allow_html=True)
 
     buy_amount = st.number_input(
         "أدخل مبلغ الشراء بالدولار",
         min_value=1.0,
-        step=1.0,
-        placeholder="مثال: 100"
+        value=100.0,
+        step=10.0
     )
 
     estimated_tokens = buy_amount / current_price
 
     st.markdown(f"""
     <div class="info-box">
-        ستحصل تقريباً على <b>{estimated_tokens:.2f}</b> توكن
+    ستحصل تقريباً على
+
+    <div class="big-green">
+    {estimated_tokens:,.2f} TOKEN
+    </div>
     </div>
     """, unsafe_allow_html=True)
 
-    if st.button("شراء الآن 💰"):
+    if st.button("شراء الآن 💚"):
 
         tokens_bought = buy_amount / current_price
 
@@ -326,63 +481,75 @@ with buy_tab:
 
         st.rerun()
 
-# =========================
-# SELL TAB
-# =========================
+# =========================================================
+# SELL
+# =========================================================
 with sell_tab:
 
-    st.markdown("### 💸 بيع الأصول")
+    st.markdown("""
+    <div class="buy-box">
+
+    <div class="buy-title">
+    💸 بيع الأصول
+    </div>
+
+    <div class="buy-sub">
+    قم ببيع التوكنات بسهولة
+    </div>
+
+    </div>
+    """, unsafe_allow_html=True)
 
     sell_tokens = st.number_input(
-        "عدد التوكنات المراد بيعها",
+        "أدخل كمية التوكن",
         min_value=0.0,
-        step=1.0,
-        placeholder="مثال: 50"
+        value=10.0,
+        step=1.0
     )
 
     estimated_value = sell_tokens * current_price
 
     st.markdown(f"""
     <div class="info-box">
-        القيمة التقديرية للبيع: <b>${estimated_value:.2f}</b>
+
+    ستحصل على
+
+    <div class="big-green">
+    ${estimated_value:,.2f}
+    </div>
+
     </div>
     """, unsafe_allow_html=True)
 
     if st.button("بيع الآن 🔥"):
 
-        if sell_tokens <= 0:
-            st.error("يرجى إدخال كمية صحيحة")
+        if sell_tokens > st.session_state.user_tokens:
 
-        elif sell_tokens > st.session_state.user_tokens:
-            st.error("رصيدك غير كافٍ لإتمام العملية")
+            st.error("الرصيد غير كافٍ")
 
         else:
 
             sell_value = sell_tokens * current_price
 
-            if sell_value > st.session_state.cash_pool:
-                st.error("السيولة الحالية غير كافية")
+            st.session_state.cash_pool -= sell_value
+            st.session_state.tokens_sold -= sell_tokens
+            st.session_state.user_tokens -= sell_tokens
 
-            else:
-                st.session_state.cash_pool -= sell_value
-                st.session_state.tokens_sold -= sell_tokens
-                st.session_state.user_tokens -= sell_tokens
+            st.success("تم تنفيذ عملية البيع بنجاح ✅")
 
-                st.success("تم تنفيذ عملية البيع بنجاح ✅")
+            st.rerun()
 
-                st.rerun()
-
-# =========================
-# FOOTER INFO
-# =========================
+# =========================================================
+# FOOTER
+# =========================================================
 st.markdown("""
-<br>
+<div class="footer-box">
 
-<div style="
-text-align:center;
-color:#64748B;
-font-size:13px;
-">
-أصول VIP • نظام تداول ذكي يعتمد على خوارزمية AMM
+🔒 جميع العمليات مشفرة وآمنة
+
+<br><br>
+
+يعتمد النظام على خوارزمية AMM الذكية
+
 </div>
 """, unsafe_allow_html=True)
